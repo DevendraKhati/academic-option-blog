@@ -43,6 +43,18 @@ const rssHref = getRelativeLocaleUrl(
     <link rel="icon" href={getAssetPath("favicon.ico")} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": site.title,
+  "url": site.website,
+  "description": site.desc,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${site.website}/search?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+})} />
 
     <!-- Font -->
     <Font
