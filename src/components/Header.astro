@@ -1,8 +1,7 @@
 ---
 // src/components/Header.astro
 // Custom single-bar navbar — categories left, brand right
-// Replaces AstroPaper's default Header completely
-
+// Mobile: hamburger toggles category list below the bar
 const CATEGORIES = [
   "All",
   "Admissions",
@@ -17,26 +16,17 @@ const CATEGORIES = [
   "Programming",
 ];
 ---
-
-<header id="main-header" style="background:#352323;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.25)">
-  <div style="display:flex;align-items:center;justify-content:space-between;padding:0 20px;gap:12px">
-
-    <!-- LEFT: Category Pills -->
-    <nav
-      aria-label="Post categories"
-      style="display:flex;align-items:center;gap:5px;overflow-x:auto;padding:10px 0;scrollbar-width:none;flex:1;min-width:0"
-    >
+<header id="main-header" class="site-header">
+  <div class="header-bar">
+    <!-- LEFT: Category Pills (desktop) -->
+    <nav aria-label="Post categories" class="cat-nav cat-nav-desktop">
       {
         CATEGORIES.map((cat, i) => (
           <button
             class="cat-btn"
             data-cat={cat}
             aria-label={`Filter by ${cat}`}
-            style={
-              i === 0
-                ? "padding:5px 16px;border-radius:20px;font-size:12px;cursor:pointer;border:none;white-space:nowrap;font-weight:600;background:#C47623;color:#fff;flex-shrink:0;transition:all 0.2s"
-                : "padding:5px 16px;border-radius:20px;font-size:12px;cursor:pointer;border:none;white-space:nowrap;font-weight:500;background:transparent;color:rgba(255,255,255,0.7);flex-shrink:0;transition:all 0.2s"
-            }
+            class:list={[{ active: i === 0 }]}
           >
             {cat}
           </button>
@@ -44,52 +34,209 @@ const CATEGORIES = [
       }
     </nav>
 
+    <!-- MOBILE: Hamburger -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
     <!-- RIGHT: Brand Name -->
-    <a
-      href="/"
-      style="text-decoration:none;white-space:nowrap;flex-shrink:0;padding:10px 0"
-      aria-label="Academic Option - Home"
-    >
-      <span style="color:#fff;font-size:16px;font-weight:700;letter-spacing:0.01em">
-        Academic <span style="color:#C47623">Option</span>
+    <a href="/" class="brand" aria-label="Academic Option - Home">
+      <span class="brand-text">
+        Academic <span class="brand-accent">Option</span>
       </span>
     </a>
-
   </div>
+
+  <!-- MOBILE: Category panel (collapsible) -->
+  <nav aria-label="Post categories mobile" id="mobile-cat-panel" class="cat-nav-mobile">
+    {
+      CATEGORIES.map((cat, i) => (
+        <button
+          class="cat-btn cat-btn-mobile"
+          data-cat={cat}
+          aria-label={`Filter by ${cat}`}
+          class:list={[{ active: i === 0 }]}
+        >
+          {cat}
+        </button>
+      ))
+    }
+  </nav>
 </header>
 
 <style>
-  /* Hide scrollbar on category row */
-  nav::-webkit-scrollbar {
+  .site-header {
+    background: #352323;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 12px;
+  }
+
+  /* Desktop category nav */
+  .cat-nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+  .cat-nav-desktop::-webkit-scrollbar {
     display: none;
   }
+
+  .cat-btn {
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    font-weight: 500;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .cat-btn.active {
+    background: #c47623;
+    color: #fff;
+    font-weight: 600;
+  }
   .cat-btn:hover {
-    background: rgba(196, 118, 35, 0.3) !important;
-    color: #fff !important;
+    background: rgba(196, 118, 35, 0.3);
+    color: #fff;
+  }
+
+  /* Brand */
+  .brand {
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 10px 0;
+  }
+  .brand-text {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .brand-accent {
+    color: #c47623;
+  }
+
+  /* Hamburger button — hidden on desktop */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .menu-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Mobile category panel — hidden by default */
+  .cat-nav-mobile {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 16px 14px;
+    background: #2c1c1c;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .cat-nav-mobile.open {
+    display: flex;
+  }
+  .cat-btn-mobile {
+    width: 100%;
+    text-align: left;
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+
+  /* ===== Mobile breakpoint ===== */
+  @media (max-width: 768px) {
+    .cat-nav-desktop {
+      display: none;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .header-bar {
+      padding: 0 16px;
+    }
+    .brand-text {
+      font-size: 15px;
+    }
   }
 </style>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const catBtns = document.querySelectorAll<HTMLElement>(".cat-btn");
-
-    // On index page — filter posts
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobilePanel = document.getElementById("mobile-cat-panel");
+    const allCatBtns = document.querySelectorAll<HTMLElement>(".cat-btn");
     const postCards = document.querySelectorAll<HTMLElement>(".post-card");
     const noPostsMsg = document.getElementById("no-posts");
 
-    catBtns.forEach((btn) => {
+    // Hamburger toggle
+    menuToggle?.addEventListener("click", () => {
+      const isOpen = mobilePanel?.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // Category filtering (works for both desktop + mobile buttons)
+    allCatBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         const selectedCat = btn.dataset.cat ?? "All";
 
-        // Update active pill style
-        catBtns.forEach((b) => {
-          b.style.background = "transparent";
-          b.style.color = "rgba(255,255,255,0.7)";
-          b.style.fontWeight = "500";
+        // Update active state across ALL buttons (desktop + mobile) with same data-cat
+        allCatBtns.forEach((b) => {
+          if (b.dataset.cat === selectedCat) {
+            b.classList.add("active");
+          } else {
+            b.classList.remove("active");
+          }
         });
-        btn.style.background = "#C47623";
-        btn.style.color = "#fff";
-        btn.style.fontWeight = "600";
+
+        // Close mobile panel after selecting
+        mobilePanel?.classList.remove("open");
+        menuToggle?.setAttribute("aria-expanded", "false");
 
         // Filter cards (only runs if post cards exist on page)
         if (postCards.length > 0) {
@@ -98,9 +245,7 @@ const CATEGORIES = [
             const tags: string[] = JSON.parse(card.dataset.tags ?? "[]");
             const show =
               selectedCat === "All" ||
-              tags.some(
-                (t) => t.toLowerCase() === selectedCat.toLowerCase()
-              );
+              tags.some((t) => t.toLowerCase() === selectedCat.toLowerCase());
             card.style.display = show ? "block" : "none";
             if (show) visibleCount++;
           });

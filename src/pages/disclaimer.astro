@@ -2,11 +2,9 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-
 const title = "Disclaimer | Academic Option";
 const description = "Disclaimer for Academic Option — limitations on information accuracy, third-party content, and liability.";
 ---
-
 <Layout {title} {description}>
   <Header />
   <main class="legal-page">
@@ -18,7 +16,6 @@ const description = "Disclaimer for Academic Option — limitations on informati
         <p class="legal-updated">Last Updated: June 2025</p>
       </div>
     </div>
-
     <div class="legal-body">
       <aside class="legal-toc">
         <p class="toc-title">On this page</p>
@@ -33,45 +30,36 @@ const description = "Disclaimer for Academic Option — limitations on informati
           <li><a href="#contact">Contact</a></li>
         </ul>
       </aside>
-
       <article class="legal-content">
-
         <section id="general">
           <h2>General Disclaimer</h2>
           <p>The information published on Academic Option is for <strong>general informational purposes only</strong>. It is provided by <strong>Vakya Labs LLP</strong> in good faith, but we make no representations or warranties of any kind — express or implied — about its completeness, accuracy, reliability, or suitability.</p>
         </section>
-
         <section id="accuracy">
           <h2>Information Accuracy</h2>
           <p>Exam dates, admission deadlines, fee structures, cut-offs, eligibility criteria, and college rankings published on this platform are sourced from publicly available information. These are subject to change by the respective institutions or authorities without notice.</p>
           <p>Always verify information directly from the <strong>official website</strong> of the concerned university, board, or government body before taking any action.</p>
         </section>
-
         <section id="exam-results">
           <h2>Exam, Results &amp; Sarkari Updates</h2>
           <p>Academic Option publishes exam result updates, admit card information, and government job notifications for informational purposes. We are not affiliated with any examination board, PSC, SSC, UPSC, or state recruitment body. Results and notifications must be verified from official portals.</p>
         </section>
-
         <section id="third-party">
           <h2>Third Party Links</h2>
           <p>Our platform may contain links to external websites. These links are provided for convenience only. Vakya Labs LLP has no control over the content of those sites and accepts no responsibility for them or for any loss or damage arising from their use.</p>
         </section>
-
         <section id="affiliate">
           <h2>Affiliate &amp; Partner Notice</h2>
           <p>Academic Option may have referral or affiliate relationships with some educational institutions. Where such relationships exist, they do not influence the editorial accuracy or objectivity of the information published. Affiliate relationships are disclosed where required.</p>
         </section>
-
         <section id="no-advice">
           <h2>Not Professional Advice</h2>
           <p>Nothing on this platform constitutes professional legal, financial, or career advice. For important decisions regarding your education or career, please consult a qualified professional or contact the relevant institution directly.</p>
         </section>
-
         <section id="liability">
           <h2>Limitation of Liability</h2>
           <p>To the maximum extent permitted by law, <strong>Vakya Labs LLP</strong> shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of, or reliance upon, any information on this platform.</p>
         </section>
-
         <section id="contact">
           <h2>Contact</h2>
           <p>For any queries regarding this disclaimer:</p>
@@ -82,7 +70,6 @@ const description = "Disclaimer for Academic Option — limitations on informati
             <tr><th>Email</th><td><a href="mailto:info@academicoption.in">info@academicoption.in</a></td></tr>
           </table>
         </section>
-
         <div class="legal-also">
           <p>Also see our</p>
           <div class="legal-also-links">
@@ -96,46 +83,152 @@ const description = "Disclaimer for Academic Option — limitations on informati
             </a>
           </div>
         </div>
-
       </article>
     </div>
   </main>
   <Footer />
 </Layout>
-
 <style>
-  .legal-page { font-family: system-ui, sans-serif; color: #1a1a1a; }
-  .legal-hero { background: #352323; padding: 3rem 1.5rem 2.5rem; color: #fff; }
+  .legal-page {
+    font-family: system-ui, sans-serif;
+    color: #f0e9e5;
+    background: #1f1414;
+    min-height: 100vh;
+  }
+  .legal-hero {
+    background: #352323;
+    padding: 3rem 1.5rem 2.5rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(196, 118, 35, 0.25);
+  }
   .legal-hero-inner { max-width: 900px; margin: 0 auto; }
-  .legal-breadcrumb { font-size: 13px; color: #a08070; margin-bottom: 0.75rem; }
-  .legal-breadcrumb a { color: #a08070; text-decoration: none; }
-  .legal-breadcrumb a:hover { color: #C47623; }
-  .legal-hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .legal-sub { color: #c0a898; font-size: 1rem; margin-bottom: 0.5rem; }
-  .legal-updated { font-size: 12px; color: #907060; }
-  .legal-body { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start; }
-  .legal-toc { position: sticky; top: 1.5rem; background: #faf8f6; border: 1px solid #ede8e3; border-radius: 10px; padding: 1.25rem; }
-  .toc-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #352323; margin-bottom: 0.75rem; }
+  .legal-breadcrumb { font-size: 13px; color: #c9a896; margin-bottom: 0.75rem; }
+  .legal-breadcrumb a { color: #c9a896; text-decoration: none; }
+  .legal-breadcrumb a:hover { color: #e89344; }
+  .legal-hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
+  .legal-sub { color: #d8c2b6; font-size: 1rem; margin-bottom: 0.5rem; }
+  .legal-updated { font-size: 12px; color: #a98e7e; }
+
+  .legal-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .legal-toc {
+    position: sticky;
+    top: 1.5rem;
+    background: #2a1c1c;
+    border: 1px solid rgba(196, 118, 35, 0.2);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .toc-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #e89344;
+    margin-bottom: 0.75rem;
+  }
   .legal-toc ul { list-style: none; padding: 0; margin: 0; }
   .legal-toc li { margin-bottom: 0.4rem; }
-  .legal-toc a { font-size: 13px; color: #6a5a52; text-decoration: none; line-height: 1.4; display: block; }
-  .legal-toc a:hover { color: #C47623; }
+  .legal-toc a {
+    font-size: 13px;
+    color: #d8c2b6;
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+  }
+  .legal-toc a:hover { color: #e89344; }
+
   .legal-content section { margin-bottom: 2.5rem; }
-  .legal-content h2 { font-size: 1.2rem; font-weight: 700; color: #352323; border-left: 4px solid #C47623; padding-left: 0.75rem; margin-bottom: 0.75rem; }
-  .legal-content p { font-size: 15px; line-height: 1.8; color: #2d2d2d; margin-bottom: 0.75rem; }
+  .legal-content h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    border-left: 4px solid #c47623;
+    padding-left: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #e6dcd6;
+    margin-bottom: 0.75rem;
+  }
+  .legal-content p strong { color: #f4c896; font-weight: 600; }
   .legal-content ul { padding-left: 1.5rem; margin-bottom: 0.75rem; }
-  .legal-content li { font-size: 15px; line-height: 1.8; color: #2d2d2d; }
-  .legal-content a { color: #C47623; }
-  .legal-content table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 14px; }
-  .legal-content th { background: #352323; color: #fff; padding: 10px 14px; text-align: left; width: 140px; }
-  .legal-content td { padding: 10px 14px; border-bottom: 1px solid #ede8e3; background: #faf8f6; }
-  .legal-content td a { color: #C47623; }
-  .legal-also { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ede8e3; }
-  .legal-also > p { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #907060; margin-bottom: 1rem; }
-  .legal-also-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .legal-also-links a { display: block; background: #faf8f6; border: 1px solid #ede8e3; border-radius: 8px; padding: 1rem 1.25rem; text-decoration: none; }
-  .legal-also-links a strong { display: block; color: #352323; font-size: 14px; margin-bottom: 4px; }
-  .legal-also-links a span { font-size: 12px; color: #7a6a62; }
-  .legal-also-links a:hover { border-color: #C47623; }
-  @media (max-width: 640px) { .legal-body { grid-template-columns: 1fr; } .legal-toc { position: static; } .legal-also-links { grid-template-columns: 1fr; } }
+  .legal-content li { font-size: 15px; line-height: 1.8; color: #e6dcd6; }
+  .legal-content a { color: #e89344; }
+  .legal-content a:hover { color: #f4ad5e; }
+
+  .legal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 14px;
+    border: 1px solid rgba(196, 118, 35, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .legal-content th {
+    background: #352323;
+    color: #f4c896;
+    padding: 10px 14px;
+    text-align: left;
+    width: 140px;
+    font-weight: 600;
+  }
+  .legal-content td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(196, 118, 35, 0.15);
+    background: #2a1c1c;
+    color: #e6dcd6;
+  }
+  .legal-content td a { color: #e89344; }
+
+  .legal-also {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(196, 118, 35, 0.2);
+  }
+  .legal-also > p {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a98e7e;
+    margin-bottom: 1rem;
+  }
+  .legal-also-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .legal-also-links a {
+    display: block;
+    background: #2a1c1c;
+    border: 1px solid rgba(196, 118, 35, 0.2);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .legal-also-links a strong { display: block; color: #fff; font-size: 14px; margin-bottom: 4px; }
+  .legal-also-links a span { font-size: 12px; color: #c9a896; }
+  .legal-also-links a:hover {
+    border-color: #c47623;
+    background: #321f1f;
+  }
+
+  @media (max-width: 640px) {
+    .legal-body { grid-template-columns: 1fr; }
+    .legal-toc { position: static; }
+    .legal-also-links { grid-template-columns: 1fr; }
+  }
 </style>
