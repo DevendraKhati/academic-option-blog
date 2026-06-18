@@ -1,0 +1,239 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+const title = "Terms & Conditions | Academic Option";
+const description = "Terms and conditions for using Academic Option platform operated by Vakya Labs LLP.";
+---
+
+<Layout {title} {description}>
+  <Header />
+  <main class="legal-page">
+    <div class="legal-hero">
+      <div class="legal-hero-inner">
+        <p class="legal-breadcrumb"><a href="/">Home</a> › Terms &amp; Conditions</p>
+        <h1>Terms &amp; Conditions</h1>
+        <p class="legal-sub">Please read these terms carefully before using the Academic Option platform.</p>
+        <p class="legal-updated">Last Updated: June 2025</p>
+      </div>
+    </div>
+
+    <div class="legal-body">
+      <aside class="legal-toc">
+        <p class="toc-title">On this page</p>
+        <ul>
+          <li><a href="#acceptance">Acceptance of Terms</a></li>
+          <li><a href="#role">Our Role</a></li>
+          <li><a href="#no-guarantee">No Guarantee</a></li>
+          <li><a href="#conduct">User Conduct</a></li>
+          <li><a href="#ip">Intellectual Property</a></li>
+          <li><a href="#third-party">Third Party Brands</a></li>
+          <li><a href="#fees">Fee Information</a></li>
+          <li><a href="#liability">Limitation of Liability</a></li>
+          <li><a href="#governing">Governing Law</a></li>
+          <li><a href="#grievance">Grievance Redressal</a></li>
+        </ul>
+      </aside>
+
+      <article class="legal-content">
+
+        <section id="acceptance">
+          <h2>Acceptance of Terms</h2>
+          <p>By accessing this website, you confirm that you are <strong>at least 18 years of age</strong>. If you are using the platform on behalf of someone else, you confirm you have legal authority to do so.</p>
+          <p>By submitting your phone number or any contact information, you provide <strong>explicit consent</strong> to be contacted by <strong>Vakya Labs LLP</strong> and its partners via call, SMS, or WhatsApp — even if your number is registered on the National Do Not Call (NDNC) registry.</p>
+        </section>
+
+        <section id="role">
+          <h2>Our Role</h2>
+          <p>Academic Option is an independent education news, information, and counselling guidance platform operated by <strong>Vakya Labs LLP</strong>. We are not an official representative, branch, or department of any university, examination board, or government body.</p>
+          <p>All academic decisions, degree conferment, admission approvals, and result declarations are solely the responsibility of the respective institutions.</p>
+        </section>
+
+        <section id="no-guarantee">
+          <h2>No Guarantee of Admission or Results</h2>
+          <p>Academic Option provides information and guidance only. We <strong>do not guarantee</strong> admission, scholarship, exam results, or placement outcomes. Final decisions rest solely with the concerned university, board, or institution.</p>
+        </section>
+
+        <section id="conduct">
+          <h2>User Conduct &amp; Accuracy</h2>
+          <p>Users agree to provide accurate and truthful information while interacting with our platform. Any misrepresentation of identity or academic credentials may result in <strong>immediate termination</strong> of services.</p>
+        </section>
+
+        <section id="ip">
+          <h2>Intellectual Property</h2>
+          <p>All content, articles, tools, logos, and design elements on this platform are the property of <strong>Vakya Labs LLP</strong>. Unauthorised reproduction, scraping, or commercial use of any content is strictly prohibited.</p>
+        </section>
+
+        <section id="third-party">
+          <h2>Third Party Brands &amp; Trademarks</h2>
+          <p>University names, logos, exam names, and brand identities referenced on this platform belong to their respective owners. Their mention is purely for informational purposes and does not imply any official endorsement or affiliation.</p>
+        </section>
+
+        <section id="fees">
+          <h2>Fee &amp; Program Information</h2>
+          <p>Fee structures, program details, exam dates, and eligibility criteria published on this platform are sourced from publicly available information and may change at any time. Academic Option shall not be held liable for discrepancies arising from updates by the respective institutions.</p>
+        </section>
+
+        <section id="liability">
+          <h2>Limitation of Liability</h2>
+          <p>Vakya Labs LLP and Academic Option shall not be liable for any direct, indirect, incidental, or consequential loss or damage arising from the use of, or reliance on, any content published on this platform.</p>
+        </section>
+
+        <section id="governing">
+          <h2>Governing Law</h2>
+          <p>These terms are governed by the laws of India. Any disputes shall be subject to the jurisdiction of courts in <strong>Uttar Pradesh</strong>.</p>
+        </section>
+
+        <section id="grievance">
+          <h2>Grievance Redressal</h2>
+          <p>As per the Information Technology Act and DPDP Act 2023, contact details for grievance redressal are provided below:</p>
+          <table>
+            <tr><th>Platform</th><td>Academic Option</td></tr>
+            <tr><th>Operated by</th><td>Vakya Labs LLP</td></tr>
+            <tr><th>Phone</th><td><a href="tel:7303261295">7303261295</a></td></tr>
+            <tr><th>Email</th><td><a href="mailto:info@academicoption.in">info@academicoption.in</a></td></tr>
+            <tr><th>Response Time</th><td>Within 48 business hours</td></tr>
+          </table>
+        </section>
+
+        <div class="legal-also">
+          <p>Also see our</p>
+          <div class="legal-also-links">
+            <a href="/privacy-policy">
+              <strong>Privacy Policy</strong>
+              <span>How we handle and protect your personal data.</span>
+            </a>
+            <a href="/disclaimer">
+              <strong>Disclaimer</strong>
+              <span>Limitations on information accuracy and liability.</span>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page { font-family: system-ui, sans-serif; color: #1a1a1a; }
+
+  .legal-hero {
+    background: #352323;
+    padding: 3rem 1.5rem 2.5rem;
+    color: #fff;
+  }
+  .legal-hero-inner { max-width: 900px; margin: 0 auto; }
+  .legal-breadcrumb { font-size: 13px; color: #a08070; margin-bottom: 0.75rem; }
+  .legal-breadcrumb a { color: #a08070; text-decoration: none; }
+  .legal-breadcrumb a:hover { color: #C47623; }
+  .legal-hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .legal-sub { color: #c0a898; font-size: 1rem; margin-bottom: 0.5rem; }
+  .legal-updated { font-size: 12px; color: #907060; }
+
+  .legal-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .legal-toc {
+    position: sticky;
+    top: 1.5rem;
+    background: #faf8f6;
+    border: 1px solid #ede8e3;
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .toc-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #352323;
+    margin-bottom: 0.75rem;
+  }
+  .legal-toc ul { list-style: none; padding: 0; margin: 0; }
+  .legal-toc li { margin-bottom: 0.4rem; }
+  .legal-toc a {
+    font-size: 13px;
+    color: #6a5a52;
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+  }
+  .legal-toc a:hover { color: #C47623; }
+
+  .legal-content section { margin-bottom: 2.5rem; }
+  .legal-content h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #352323;
+    border-left: 4px solid #C47623;
+    padding-left: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #2d2d2d;
+    margin-bottom: 0.75rem;
+  }
+  .legal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 14px;
+  }
+  .legal-content th {
+    background: #352323;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    width: 140px;
+  }
+  .legal-content td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #ede8e3;
+    background: #faf8f6;
+  }
+  .legal-content td a { color: #C47623; }
+
+  .legal-also {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ede8e3;
+  }
+  .legal-also > p {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #907060;
+    margin-bottom: 1rem;
+  }
+  .legal-also-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .legal-also-links a {
+    display: block;
+    background: #faf8f6;
+    border: 1px solid #ede8e3;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+  }
+  .legal-also-links a strong { display: block; color: #352323; font-size: 14px; margin-bottom: 4px; }
+  .legal-also-links a span { font-size: 12px; color: #7a6a62; }
+  .legal-also-links a:hover { border-color: #C47623; }
+
+  @media (max-width: 640px) {
+    .legal-body { grid-template-columns: 1fr; }
+    .legal-toc { position: static; }
+    .legal-also-links { grid-template-columns: 1fr; }
+  }
+</style>

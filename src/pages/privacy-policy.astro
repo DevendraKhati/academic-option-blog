@@ -1,0 +1,179 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+const title = "Privacy Policy | Academic Option";
+const description = "Privacy policy for Academic Option — how Vakya Labs LLP collects, uses, and protects your personal data.";
+---
+
+<Layout {title} {description}>
+  <Header />
+  <main class="legal-page">
+    <div class="legal-hero">
+      <div class="legal-hero-inner">
+        <p class="legal-breadcrumb"><a href="/">Home</a> › Privacy Policy</p>
+        <h1>Privacy Policy</h1>
+        <p class="legal-sub">How Academic Option collects, uses, and protects your personal data.</p>
+        <p class="legal-updated">Last Updated: June 2025</p>
+      </div>
+    </div>
+
+    <div class="legal-body">
+      <aside class="legal-toc">
+        <p class="toc-title">On this page</p>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#data-collected">Data We Collect</a></li>
+          <li><a href="#how-used">How We Use It</a></li>
+          <li><a href="#sharing">Data Sharing</a></li>
+          <li><a href="#cookies">Cookies</a></li>
+          <li><a href="#retention">Data Retention</a></li>
+          <li><a href="#rights">Your Rights</a></li>
+          <li><a href="#security">Data Security</a></li>
+          <li><a href="#children">Children's Privacy</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </aside>
+
+      <article class="legal-content">
+
+        <section id="overview">
+          <h2>Overview</h2>
+          <p>Academic Option, operated by <strong>Vakya Labs LLP</strong>, is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal information when you use our platform.</p>
+        </section>
+
+        <section id="data-collected">
+          <h2>Data We Collect</h2>
+          <p>We may collect the following information:</p>
+          <ul>
+            <li>Name, email address, phone number</li>
+            <li>Academic details (course interest, qualification)</li>
+            <li>Location data (city, state)</li>
+            <li>Device and browser information</li>
+            <li>Usage data (pages visited, time spent)</li>
+          </ul>
+        </section>
+
+        <section id="how-used">
+          <h2>How We Use Your Data</h2>
+          <p>Your information is used to:</p>
+          <ul>
+            <li>Provide education guidance and counselling</li>
+            <li>Send relevant exam updates, admission alerts, and scholarship notifications</li>
+            <li>Improve our platform and content</li>
+            <li>Comply with legal obligations</li>
+          </ul>
+          <p>By submitting your contact details, you consent to being contacted via call, SMS, or WhatsApp by <strong>Vakya Labs LLP</strong>, even if registered on NDNC.</p>
+        </section>
+
+        <section id="sharing">
+          <h2>Data Sharing</h2>
+          <p>We do not sell your personal data. We may share data with:</p>
+          <ul>
+            <li>Trusted university and education partners (for counselling purposes)</li>
+            <li>Analytics providers (Google Analytics)</li>
+            <li>Legal authorities if required by law</li>
+          </ul>
+        </section>
+
+        <section id="cookies">
+          <h2>Cookies</h2>
+          <p>We use cookies to improve user experience and analyse site traffic. You can disable cookies in your browser settings, though some features may not function correctly.</p>
+        </section>
+
+        <section id="retention">
+          <h2>Data Retention</h2>
+          <p>We retain your personal data only as long as necessary for the purposes described in this policy, or as required by law. You may request deletion at any time.</p>
+        </section>
+
+        <section id="rights">
+          <h2>Your Rights (DPDP Act 2023)</h2>
+          <p>Under the Digital Personal Data Protection Act 2023, you have the right to:</p>
+          <ul>
+            <li>Access the personal data we hold about you</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request erasure of your data</li>
+            <li>Withdraw consent at any time</li>
+            <li>Nominate a representative for data decisions</li>
+          </ul>
+          <p>To exercise these rights, contact us at <a href="mailto:info@academicoption.in">info@academicoption.in</a>.</p>
+        </section>
+
+        <section id="security">
+          <h2>Data Security</h2>
+          <p>We implement reasonable technical and organisational measures to protect your data from unauthorised access, disclosure, or loss. However, no internet transmission is 100% secure.</p>
+        </section>
+
+        <section id="children">
+          <h2>Children's Privacy</h2>
+          <p>Our platform is intended for users aged 18 and above. We do not knowingly collect data from minors. If you believe a minor has submitted data, contact us immediately.</p>
+        </section>
+
+        <section id="contact">
+          <h2>Contact Us</h2>
+          <table>
+            <tr><th>Platform</th><td>Academic Option</td></tr>
+            <tr><th>Operated by</th><td>Vakya Labs LLP</td></tr>
+            <tr><th>Phone</th><td><a href="tel:7303261295">7303261295</a></td></tr>
+            <tr><th>Email</th><td><a href="mailto:info@academicoption.in">info@academicoption.in</a></td></tr>
+            <tr><th>Response Time</th><td>Within 48 business hours</td></tr>
+          </table>
+        </section>
+
+        <div class="legal-also">
+          <p>Also see our</p>
+          <div class="legal-also-links">
+            <a href="/terms">
+              <strong>Terms &amp; Conditions</strong>
+              <span>Rules for using the Academic Option platform.</span>
+            </a>
+            <a href="/disclaimer">
+              <strong>Disclaimer</strong>
+              <span>Limitations on information accuracy and liability.</span>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page { font-family: system-ui, sans-serif; color: #1a1a1a; }
+  .legal-hero { background: #352323; padding: 3rem 1.5rem 2.5rem; color: #fff; }
+  .legal-hero-inner { max-width: 900px; margin: 0 auto; }
+  .legal-breadcrumb { font-size: 13px; color: #a08070; margin-bottom: 0.75rem; }
+  .legal-breadcrumb a { color: #a08070; text-decoration: none; }
+  .legal-breadcrumb a:hover { color: #C47623; }
+  .legal-hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .legal-sub { color: #c0a898; font-size: 1rem; margin-bottom: 0.5rem; }
+  .legal-updated { font-size: 12px; color: #907060; }
+  .legal-body { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start; }
+  .legal-toc { position: sticky; top: 1.5rem; background: #faf8f6; border: 1px solid #ede8e3; border-radius: 10px; padding: 1.25rem; }
+  .toc-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #352323; margin-bottom: 0.75rem; }
+  .legal-toc ul { list-style: none; padding: 0; margin: 0; }
+  .legal-toc li { margin-bottom: 0.4rem; }
+  .legal-toc a { font-size: 13px; color: #6a5a52; text-decoration: none; line-height: 1.4; display: block; }
+  .legal-toc a:hover { color: #C47623; }
+  .legal-content section { margin-bottom: 2.5rem; }
+  .legal-content h2 { font-size: 1.2rem; font-weight: 700; color: #352323; border-left: 4px solid #C47623; padding-left: 0.75rem; margin-bottom: 0.75rem; }
+  .legal-content p { font-size: 15px; line-height: 1.8; color: #2d2d2d; margin-bottom: 0.75rem; }
+  .legal-content ul { padding-left: 1.5rem; margin-bottom: 0.75rem; }
+  .legal-content li { font-size: 15px; line-height: 1.8; color: #2d2d2d; }
+  .legal-content a { color: #C47623; }
+  .legal-content table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 14px; }
+  .legal-content th { background: #352323; color: #fff; padding: 10px 14px; text-align: left; width: 140px; }
+  .legal-content td { padding: 10px 14px; border-bottom: 1px solid #ede8e3; background: #faf8f6; }
+  .legal-content td a { color: #C47623; }
+  .legal-also { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ede8e3; }
+  .legal-also > p { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #907060; margin-bottom: 1rem; }
+  .legal-also-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .legal-also-links a { display: block; background: #faf8f6; border: 1px solid #ede8e3; border-radius: 8px; padding: 1rem 1.25rem; text-decoration: none; }
+  .legal-also-links a strong { display: block; color: #352323; font-size: 14px; margin-bottom: 4px; }
+  .legal-also-links a span { font-size: 12px; color: #7a6a62; }
+  .legal-also-links a:hover { border-color: #C47623; }
+  @media (max-width: 640px) { .legal-body { grid-template-columns: 1fr; } .legal-toc { position: static; } .legal-also-links { grid-template-columns: 1fr; } }
+</style>
