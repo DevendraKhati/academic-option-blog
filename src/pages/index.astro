@@ -1,131 +1,201 @@
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import Card from "@/components/Card.astro";
-import LinkButton from "@/components/LinkButton.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
-const { socials, posts: postsConfig } = config;
-
+const { posts: postsConfig } = config;
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
+const allPostsUrl = getRelativeLocaleUrl(locale, "posts");
 
 const posts = await getCollection("posts");
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-const homePath = getRelativeLocaleUrl(locale, "");
+
+const featuredPost = sortedPosts.find(({ data }) => data.featured) ?? sortedPosts[0];
+const recentPosts = sortedPosts.filter((p) => p !== featuredPost);
+
+function getPostPath(post: (typeof sortedPosts)[0]) {
+  return post.id.replace(/\.(md|mdx)$/, "");
+}
+
+const processedPosts = recentPosts
+  .slice(0, postsConfig.perIndex ?? 9)
+  .map((post) => {
+    const tag = post.data.tags && post.data.tags.length > 0 ? post.data.tags[0] : "General";
+    const author = post.data.author ?? "Academic Option";
+    const initials = author.split(" ").map((w: string) => w[0]).join("").slice(0, 2).toUpperCase();
+    const dateStr = new Date(post.data.pubDatetime).toLocaleDateString("en-IN", {
+      day: "numeric", month: "short", year: "numeric",
+    });
+    return { post, tag, author, initials, dateStr };
+  });
+
+const featuredTag = featuredPost?.data.tags && featuredPost.data.tags.length > 0
+  ? featuredPost.data.tags[0] : "Featured";
+const featuredAuthor = featuredPost?.data.author ?? "Academic Option";
+const featuredDateStr = featuredPost
+  ? new Date(featuredPost.data.pubDatetime).toLocaleDateString("en-IN", {
+      day: "numeric", month: "short", year: "numeric",
+    })
+  : "";
 ---
 
 <Layout>
   <Header />
+
   <main
     id="main-content"
     data-layout="index"
-    data-home-path={homePath}
-    class="app-layout"
+    data-home-path={getRelativeLocaleUrl(locale, "")}
+    style="background:#f8f5f0;min-height:100vh"
   >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Academic Option
-      </h1>
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+    <div style="max-width:1100px;margin:0 auto;padding:24px 16px">
 
-      <p>
-        Academic Option is your trusted guide for education in India. We help 
-        students make informed decisions about college admissions, entrance 
-        exams, career paths, and scholarships.
-      </p>
-      <p class="mt-2">
-        Explore our blog posts to find the right college, course, and career 
-         path for your future.
-             </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
+      {featuredPost && (
+        <a
+          href={getRelativeLocaleUrl(locale, `posts/${getPostPath(featuredPost)}`)}
+          style="text-decoration:none;display:block;margin-bottom:28px"
         >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+          <div
+            class="hero-card"
+            style="background:#352323;border-radius:16px;display:grid;grid-template-columns:1fr 260px;overflow:hidden;min-height:210px;box-shadow:0 4px 24px rgba(53,35,35,0.18)"
+          >
+            <div style="padding:30px 36px;display:flex;flex-direction:column;justify-content:space-between">
+              <div>
+                <div style="display:inline-block;background:#C47623;color:#fff;font-size:10px;padding:3px 14px;border-radius:20px;margin-bottom:14px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase">
+                  {featuredTag}
+                </div>
+                <h1 style="color:#fff;font-size:22px;font-weight:700;line-height:1.4;margin:0 0 12px">
+                  {featuredPost.data.title}
+                </h1>
+                <p style="color:rgba(255,255,255,0.6);font-size:13px;line-height:1.65;margin:0">
+                  {featuredPost.data.description}
+                </p>
+              </div>
+              <div style="margin-top:22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+                <span style="background:#C47623;color:#fff;padding:8px 22px;border-radius:20px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px">
+                  Read full article
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span style="color:rgba(255,255,255,0.45);font-size:11px">
+                  {featuredAuthor}&nbsp;·&nbsp;{featuredDateStr}
+                </span>
+              </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#4a3030 0%,#5a3a2a 100%);display:flex;align-items:center;justify-content:center;padding:28px">
+              <svg viewBox="0 0 160 130" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:170px">
+                <rect x="20" y="20" width="68" height="88" rx="7" fill="#C47623" opacity="0.15"/>
+                <rect x="28" y="30" width="68" height="88" rx="7" fill="#C47623" opacity="0.2"/>
+                <rect x="36" y="10" width="68" height="88" rx="7" fill="#C47623" opacity="0.3"/>
+                <rect x="48" y="28" width="44" height="5" rx="2.5" fill="#C47623" opacity="0.8"/>
+                <rect x="48" y="40" width="36" height="3" rx="1.5" fill="#fff" opacity="0.35"/>
+                <rect x="48" y="49" width="40" height="3" rx="1.5" fill="#fff" opacity="0.35"/>
+                <rect x="48" y="58" width="30" height="3" rx="1.5" fill="#fff" opacity="0.35"/>
+                <rect x="48" y="67" width="38" height="3" rx="1.5" fill="#fff" opacity="0.25"/>
+                <circle cx="118" cy="42" r="22" fill="#C47623" opacity="0.12"/>
+                <polygon points="118,24 136,34 118,44 100,34" fill="#C47623" opacity="0.6"/>
+                <rect x="130" y="34" width="3" height="14" rx="1.5" fill="#C47623" opacity="0.7"/>
+                <circle cx="131.5" cy="49" r="3" fill="#C47623" opacity="0.8"/>
+                <text x="118" y="70" text-anchor="middle" fill="#C47623" font-size="11" font-weight="700" opacity="0.5">Academic Option</text>
+              </svg>
+            </div>
+          </div>
+        </a>
+      )}
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <h2 style="font-size:16px;font-weight:700;color:#352323;margin:0;border-left:3px solid #C47623;padding-left:10px">
+          Latest Posts
+        </h2>
+        <a href={allPostsUrl} style="font-size:12px;color:#C47623;text-decoration:none;font-weight:600">
+          View all →
+        </a>
+      </div>
 
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
+      <div id="posts-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        {processedPosts.map(({ post, tag, author, initials, dateStr }) => (
+          <a
+            href={getRelativeLocaleUrl(locale, `posts/${getPostPath(post)}`)}
+            class="post-card"
+            data-tags={JSON.stringify(post.data.tags ?? [])}
+            style="text-decoration:none;background:#fff;border-radius:12px;overflow:hidden;border:0.5px solid #e8e0d8;display:block"
+          >
+            <div style="height:96px;background:linear-gradient(135deg,#f0e8de 0%,#ede0d0 100%);display:flex;align-items:center;justify-content:center;position:relative">
+              <svg viewBox="0 0 70 55" fill="none" style="width:52px;opacity:0.35">
+                <rect x="5" y="5" width="60" height="45" rx="5" fill="#C47623"/>
+                <rect x="13" y="16" width="34" height="4" rx="2" fill="#fff"/>
+                <rect x="13" y="25" width="26" height="3" rx="1.5" fill="#fff"/>
+                <rect x="13" y="33" width="30" height="3" rx="1.5" fill="#fff"/>
+              </svg>
+              <span style="position:absolute;top:10px;left:10px;background:#352323;color:#fff;font-size:9px;font-weight:600;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:0.04em">
+                {tag}
+              </span>
+            </div>
+            <div style="padding:13px">
+              <div style="display:flex;justify-content:flex-end;margin-bottom:5px">
+                <span style="color:#bbb;font-size:10px">{dateStr}</span>
+              </div>
+              <h3 style="font-size:13px;font-weight:600;color:#352323;line-height:1.45;margin:0 0 10px">
+                {post.data.title}
+              </h3>
+              <div style="display:flex;align-items:center;gap:7px">
+                <div style="width:24px;height:24px;border-radius:50%;background:#C47623;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;flex-shrink:0">
+                  {initials}
+                </div>
+                <span style="font-size:11px;color:#777;font-weight:500">{author}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div id="no-posts" style="display:none;text-align:center;padding:48px;color:#999;font-size:14px">
+        No posts found in this category.
+      </div>
+
+      <div style="text-align:center;margin-top:32px">
+        <a href={allPostsUrl} style="background:#352323;color:#fff;padding:11px 32px;border-radius:24px;font-size:13px;text-decoration:none;font-weight:600;display:inline-block">
+          View all posts →
+        </a>
+      </div>
+
     </div>
   </main>
+
   <Footer />
 </Layout>
 
+<style>
+  .hero-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(53,35,35,0.25) !important;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(53,35,35,0.1) !important;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  @media (max-width: 768px) {
+    #posts-grid { grid-template-columns: repeat(2,1fr) !important; }
+  }
+  @media (max-width: 480px) {
+    #posts-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+
 <script>
   document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset;
-    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-    if (indexLayout?.layout) {
-      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+    const mainEl = document.querySelector("#main-content") as HTMLElement | null;
+    if (mainEl?.dataset?.layout) {
+      sessionStorage.setItem("backUrl", mainEl.dataset.homePath ?? "/");
     }
   });
 </script>
